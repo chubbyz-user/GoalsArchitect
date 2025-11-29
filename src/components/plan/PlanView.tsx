@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { PlanState } from '../../types';
 import { 
-  CheckCircle2, RefreshCw, Download, 
-  Clock, Undo2, Redo2, Save, List, Calendar, Search, X, Loader2
-} from 'lucide-react';
+  CheckCircleIcon, ArrowPathIcon, ArrowDownTrayIcon, 
+  ClockIcon, ArrowUturnLeftIcon, ArrowUturnRightIcon, DocumentIcon, ListBulletIcon, CalendarIcon, MagnifyingGlassIcon, XMarkIcon
+} from '@heroicons/react/24/solid';
 import confetti from 'canvas-confetti';
 import { ListView } from './ListView';
 import { GridView } from './GridView';
@@ -80,7 +80,7 @@ export const PlanView: React.FC<PlanViewProps> = ({
           </div>
           <div className="flex items-center gap-4 text-sm font-medium">
              <div className="flex items-center gap-2 text-amber-500 bg-amber-950/30 px-3 py-1 rounded-full border border-amber-900/50">
-                <Clock className="w-4 h-4" />
+                <ClockIcon className="w-4 h-4" />
                 <span>{plan.days.length} Days</span>
              </div>
              <div className="text-neutral-500">
@@ -106,17 +106,17 @@ export const PlanView: React.FC<PlanViewProps> = ({
       <div className="flex flex-wrap items-center justify-between gap-4 sticky top-20 z-40 bg-black/80 p-4 rounded-xl border border-neutral-800 backdrop-blur-md shadow-xl shadow-black/50">
          <div className="flex flex-wrap items-center gap-2">
             <button onClick={onSave} className="p-2 hover:bg-neutral-800 rounded-lg text-neutral-400 hover:text-white transition-colors" title="Save">
-               <Save className="w-5 h-5" />
+               <DocumentIcon className="w-5 h-5" />
             </button>
             <button onClick={handleDownloadPlan} className="p-2 hover:bg-neutral-800 rounded-lg text-neutral-400 hover:text-white transition-colors" title="Download Plan">
-               <Download className="w-5 h-5" />
+               <ArrowDownTrayIcon className="w-5 h-5" />
             </button>
             <div className="w-px h-6 bg-neutral-800 mx-1"></div>
             <button onClick={onUndo} disabled={!canUndo} className="p-2 disabled:opacity-30 hover:bg-neutral-800 rounded-lg text-neutral-400 hover:text-white transition-colors">
-               <Undo2 className="w-5 h-5" />
+               <ArrowUturnLeftIcon className="w-5 h-5" />
             </button>
             <button onClick={onRedo} disabled={!canRedo} className="p-2 disabled:opacity-30 hover:bg-neutral-800 rounded-lg text-neutral-400 hover:text-white transition-colors">
-               <Redo2 className="w-5 h-5" />
+               <ArrowUturnRightIcon className="w-5 h-5" />
             </button>
             <div className="w-px h-6 bg-neutral-800 mx-1"></div>
             <div className="flex bg-neutral-900 p-1 rounded-lg border border-neutral-800">
@@ -125,14 +125,14 @@ export const PlanView: React.FC<PlanViewProps> = ({
                   className={`p-1.5 rounded-md transition-all ${viewMode === 'list' ? 'bg-neutral-800 text-white shadow-sm' : 'text-neutral-500 hover:text-neutral-300'}`}
                   title="List View"
                >
-                  <List className="w-4 h-4" />
+                  <ListBulletIcon className="w-4 h-4" />
                </button>
                <button 
                   onClick={() => setViewMode('grid')}
                   className={`p-1.5 rounded-md transition-all ${viewMode === 'grid' ? 'bg-neutral-800 text-white shadow-sm' : 'text-neutral-500 hover:text-neutral-300'}`}
                   title="Calendar View"
                >
-                  <Calendar className="w-4 h-4" />
+                  <CalendarIcon className="w-4 h-4" />
                </button>
             </div>
             <div className="w-px h-6 bg-neutral-800 mx-1"></div>
@@ -140,7 +140,7 @@ export const PlanView: React.FC<PlanViewProps> = ({
             {/* Search Input */}
             <div className="relative group w-48 sm:w-64">
                <div className="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none">
-                  <Search className="h-3.5 w-3.5 text-neutral-500 group-focus-within:text-amber-500 transition-colors" />
+                  <MagnifyingGlassIcon className="h-3.5 w-3.5 text-neutral-500 group-focus-within:text-amber-500 transition-colors" />
                </div>
                <input
                   type="text"
@@ -154,7 +154,7 @@ export const PlanView: React.FC<PlanViewProps> = ({
                      onClick={() => setSearchQuery('')}
                      className="absolute inset-y-0 right-0 pr-2.5 flex items-center cursor-pointer text-neutral-500 hover:text-white"
                   >
-                     <X className="h-3.5 w-3.5" />
+                     <XMarkIcon className="h-3.5 w-3.5" />
                   </button>
                )}
             </div>
@@ -167,7 +167,7 @@ export const PlanView: React.FC<PlanViewProps> = ({
               title={!canRegenerate ? "Cannot regenerate plan loaded from history" : "Regenerate Plan"}
               className="px-3 py-1.5 text-xs font-bold bg-neutral-900 border border-neutral-800 text-neutral-300 rounded-lg hover:border-amber-900/50 hover:text-amber-500 transition-all flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-               <RefreshCw className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} />
+               <ArrowPathIcon className={`w-3.5 h-3.5 ${isLoading ? 'animate-spin' : ''}`} />
                {isLoading ? "Regenerating..." : "Regenerate"}
             </button>
             <button onClick={onReset} disabled={isLoading} className="px-3 py-1.5 text-xs font-bold bg-red-950/20 border border-red-900/30 text-red-400 rounded-lg hover:bg-red-900/30 transition-all disabled:opacity-50">

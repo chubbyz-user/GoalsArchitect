@@ -2,7 +2,26 @@ import { GoogleGenAI } from "@google/genai";
 import { Duration, GeneratedPlan, GeneratedTask } from "../types";
 import { cleanJson } from "../utils";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Browser builds (Vite) don't provide `process.env`. Use `import.meta.env` for Vite
+// and allow a global fallback if the key is injected some other way.
+const getApiKey = (): string => {
+  // Prefer Vite env variable `VITE_API_KEY`.
+  const key = (import.meta as any)?.env?.VITE_API_KEY || (globalThis as any)?.__GOOGLE_API_KEY__;
+  if (!key) {
+    throw new Error(
+      'Missing API key for Gemini: set `VITE_API_KEY` in your env or provide a runtime global `__GOOGLE_API_KEY__`'
+    );
+  }
+  return key;
+};
+
+let aiInstance: GoogleGenAI | null = null;
+const getAI = (): GoogleGenAI => {
+  if (!aiInstance) {
+    aiInstance = new GoogleGenAI({ apiKey: getApiKey() });
+  }
+  return aiInstance;
+};
 
 /**
  * Generates a comprehensive plan for the given goal and duration
@@ -61,7 +80,7 @@ export const generatePlan = async (goal: string, duration: Duration): Promise<Ge
   `;
 
   try {
-    const response = await ai.models.generateContent({
+    const response = await getAI().models.generateContent({
       model: "gemini-2.5-flash",
       contents: prompt,
       config: {
@@ -116,7 +135,7 @@ export const breakDownTask = async (taskDescription: string): Promise<GeneratedT
   `;
 
   try {
-    const response = await ai.models.generateContent({
+    const response = await getAI().models.generateContent({
       model: "gemini-2.5-flash",
       contents: prompt,
       config: {

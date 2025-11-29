@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { PlanState } from '../../types';
-import { ChevronRight, ChevronDown } from 'lucide-react';
+import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/24/solid';
 import { TaskItem } from './TaskItem';
 import { countTasks } from '../../utils';
 
@@ -72,7 +72,7 @@ export const ListView: React.FC<ListViewProps> = ({
              >
                 <div className="flex items-center gap-4">
                    <div className={`p-2 rounded-lg transition-transform duration-300 ${isExpanded ? 'rotate-90 bg-amber-500/10 text-amber-500' : 'text-neutral-500'}`}>
-                      <ChevronRight className="w-5 h-5" />
+                      <ChevronRightIcon className="w-5 h-5" />
                    </div>
                    <div>
                       <div className="flex items-center gap-3 mb-1">

@@ -5,9 +5,8 @@ import path from 'path';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // CRITICAL: This './' makes the app look for files relative to itself,
-  // which is required when running as an .exe (file:// protocol) or in nested paths
-  base: './', 
+  // Use '/' for web deployment (Vercel/Netlify), './' for Electron/file:// protocol
+  base: process.env.NODE_ENV === 'production' && process.env.VITE_BUILD_TARGET !== 'electron' ? '/' : './',
   build: {
     outDir: 'dist',
     emptyOutDir: true,

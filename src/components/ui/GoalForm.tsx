@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Duration } from '../../types';
-import { ArrowRight, Loader2, Sparkles, Clock, RotateCcw } from 'lucide-react';
+import { ArrowRightIcon, SparklesIcon, ClockIcon, ArrowPathIcon } from '@heroicons/react/24/solid';
 
 interface GoalFormProps {
   onGenerate: (goal: string, duration: Duration) => void;
@@ -59,7 +59,7 @@ export const GoalForm: React.FC<GoalFormProps> = ({ onGenerate, isLoading, onLoa
                   Timeline Duration
                 </label>
                 <div className="flex items-center gap-2 text-white font-mono font-bold text-xl bg-neutral-950 px-3 py-1 rounded-lg border border-neutral-800">
-                   <Clock className="w-4 h-4 text-amber-500" />
+                   <ClockIcon className="w-4 h-4 text-amber-500" />
                    {days} <span className="text-sm text-neutral-500 font-sans font-normal pt-1">Days</span>
                 </div>
              </div>
@@ -108,14 +108,14 @@ export const GoalForm: React.FC<GoalFormProps> = ({ onGenerate, isLoading, onLoa
             >
               {isLoading ? (
                 <>
-                  <Loader2 className="w-5 h-5 animate-spin text-amber-500" />
+                  <SparklesIcon className="w-5 h-5 animate-spin text-amber-500" />
                   <span className="text-amber-500">Architecting Plan...</span>
                 </>
               ) : (
                 <>
-                  <Sparkles className="w-5 h-5 text-black/70" />
+                  <SparklesIcon className="w-5 h-5 text-black/70" />
                   GENERATE BLUEPRINT
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </>
               )}
             </button>
@@ -126,7 +126,7 @@ export const GoalForm: React.FC<GoalFormProps> = ({ onGenerate, isLoading, onLoa
                   onClick={onLoad}
                   className="w-full py-3 bg-transparent border border-neutral-800 hover:border-neutral-700 text-neutral-500 hover:text-white rounded-xl font-medium transition-all flex items-center justify-center gap-2 group"
                >
-                  <RotateCcw className="w-4 h-4 group-hover:-rotate-90 transition-transform duration-500" />
+                  <ArrowPathIcon className="w-4 h-4 group-hover:-rotate-90 transition-transform duration-500" />
                   Load Previous Session
                </button>
             )}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { PlanState, Task } from '../../types';
-import { CheckCircle2, Youtube, Split, Loader2, ChevronRight, ChevronDown } from 'lucide-react';
+import { CheckCircleIcon, PlayIcon, ArrowUturnLeftIcon, ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/24/solid';
 
 interface TaskItemProps {
   task: Task;
@@ -45,7 +45,7 @@ export const TaskItem: React.FC<TaskItemProps> = React.memo(({
                 }}
                 className="absolute -left-3 top-3.5 -ml-1.5 p-0.5 rounded-full bg-neutral-900 border border-neutral-700 text-neutral-500 hover:text-white hover:border-neutral-500 transition-colors z-10"
               >
-                {task.isExpanded ? <ChevronDown className="w-3 h-3" /> : <ChevronRight className="w-3 h-3" />}
+                {task.isExpanded ? <ChevronDownIcon className="w-3 h-3" /> : <ChevronRightIcon className="w-3 h-3" />}
               </button>
             )}
 
@@ -57,7 +57,7 @@ export const TaskItem: React.FC<TaskItemProps> = React.memo(({
                    : 'border-neutral-600 hover:border-amber-500/50'
                }`}
             >
-               {task.isCompleted && <CheckCircle2 className="w-2.5 h-2.5" />}
+               {task.isCompleted && <CheckCircleIcon className="w-2.5 h-2.5" />}
             </button>
             
             <div className="flex-1 min-w-0 flex flex-col gap-1">
@@ -73,7 +73,7 @@ export const TaskItem: React.FC<TaskItemProps> = React.memo(({
                       rel="noopener noreferrer"
                       className="flex items-center gap-1.5 text-[10px] font-medium text-red-400 hover:text-red-300 w-fit px-2 py-1 bg-red-950/10 rounded-full hover:bg-red-950/20 transition-colors border border-red-900/20"
                     >
-                      <Youtube className="w-3 h-3" />
+                      <PlayIcon className="w-3 h-3" />
                       Tutorials
                     </a>
                   )}
@@ -86,9 +86,9 @@ export const TaskItem: React.FC<TaskItemProps> = React.memo(({
                         title="Break down into smaller steps"
                      >
                         {isBreakingDown ? (
-                           <Loader2 className="w-3 h-3 animate-spin text-amber-500" />
+                           <ArrowUturnLeftIcon className="w-3 h-3 animate-spin text-amber-500" />
                         ) : (
-                           <Split className="w-3 h-3" />
+                           <ArrowUturnLeftIcon className="w-3 h-3" />
                         )}
                         <span>{isBreakingDown ? "Thinking..." : "Break Down"}</span>
                      </button>

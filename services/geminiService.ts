@@ -1,7 +1,26 @@
 import { GoogleGenAI } from "@google/genai";
 import { Duration, GeneratedPlan, GeneratedTask } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Browser builds (Vite) don't provide `process.env`. Use `import.meta.env` for Vite
+// and allow a global fallback if the key is injected some other way.
+const getApiKey = (): string => {
+  // Prefer Vite env variable `VITE_API_KEY`.
+  const key = (import.meta as any)?.env?.VITE_API_KEY || (globalThis as any)?.__GOOGLE_API_KEY__;
+  if (!key) {
+    throw new Error(
+      'Missing API key for Gemini: set `VITE_API_KEY` in your env or provide a runtime global `__GOOGLE_API_KEY__`'
+    );
+  }
+  return key;
+};
+
+let aiInstance: GoogleGenAI | null = null;
+const getAI = (): GoogleGenAI => {
+  if (!aiInstance) {
+    aiInstance = new GoogleGenAI({ apiKey: getApiKey() });
+  }
+  return aiInstance;
+};
 
 // Helper to extract JSON from markdown code blocks or raw text
 const cleanJson = (text: string): string => {
@@ -129,7 +148,7 @@ export const breakDownTask = async (taskDescription: string): Promise<GeneratedT
   `;
 
   try {
-    const response = await ai.models.generateContent({
+    const response = await getAI().models.generateContent({
       model: "gemini-2.5-flash",
       contents: prompt,
       config: {

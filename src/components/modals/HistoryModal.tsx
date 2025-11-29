@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { HistoryItem } from '../../types';
-import { X, Calendar, Edit2, Trash2, Check, Play, Clock, Search, Archive } from 'lucide-react';
+import { XMarkIcon, CalendarIcon, PencilIcon, TrashIcon, CheckIcon, PlayIcon, ClockIcon, MagnifyingGlassIcon, ArchiveBoxIcon } from '@heroicons/react/24/solid';
 import { formatDate } from '../../utils';
 
 interface HistoryModalProps {
@@ -60,7 +60,7 @@ export const HistoryModal: React.FC<HistoryModalProps> = ({
         <div className="p-6 border-b border-neutral-800 flex items-center justify-between bg-neutral-900/50 rounded-t-2xl">
           <div className="flex items-center gap-3">
              <div className="bg-amber-500/10 p-2 rounded-lg text-amber-500">
-                <Archive className="w-5 h-5" />
+                <ArchiveBoxIcon className="w-5 h-5" />
              </div>
              <div>
                 <h3 className="text-xl font-bold text-white">Plan Archive</h3>
@@ -71,14 +71,14 @@ export const HistoryModal: React.FC<HistoryModalProps> = ({
             onClick={onClose}
             className="p-2 hover:bg-neutral-800 rounded-lg text-neutral-400 hover:text-white transition-colors"
           >
-            <X className="w-5 h-5" />
+            <XMarkIcon className="w-5 h-5" />
           </button>
         </div>
 
         {/* Search */}
         <div className="p-4 border-b border-neutral-800 bg-black/20">
            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500" />
+              <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500" />
               <input 
                  type="text" 
                  placeholder="Search history..." 
@@ -93,7 +93,7 @@ export const HistoryModal: React.FC<HistoryModalProps> = ({
         <div className="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar">
            {history.length === 0 ? (
               <div className="text-center py-12 text-neutral-600">
-                 <Archive className="w-12 h-12 mx-auto mb-3 opacity-20" />
+                 <ArchiveBoxIcon className="w-12 h-12 mx-auto mb-3 opacity-20" />
                  <p className="text-sm">No saved plans found.</p>
                  <p className="text-xs mt-1 text-neutral-700">Plans you save will appear here.</p>
               </div>
@@ -121,7 +121,7 @@ export const HistoryModal: React.FC<HistoryModalProps> = ({
                                    className="bg-black border border-amber-500/50 rounded px-2 py-0.5 text-sm text-white focus:outline-none w-full max-w-[200px]"
                                 />
                                 <button onMouseDown={() => handleSaveEdit(item.id)} className="text-green-500 hover:text-green-400">
-                                   <Check className="w-4 h-4" />
+                                   <CheckIcon className="w-4 h-4" />
                                 </button>
                              </div>
                           ) : (
@@ -131,17 +131,17 @@ export const HistoryModal: React.FC<HistoryModalProps> = ({
                                    onClick={(e) => { e.stopPropagation(); handleStartEdit(item); }}
                                    className="opacity-0 group-hover/title:opacity-100 text-neutral-500 hover:text-amber-500 transition-opacity"
                                 >
-                                   <Edit2 className="w-3 h-3" />
+                                   <PencilIcon className="w-3 h-3" />
                                 </button>
                              </div>
                           )}
                           <div className="flex items-center gap-3 text-xs text-neutral-500">
                              <span className="flex items-center gap-1">
-                                <Calendar className="w-3 h-3" />
+                                <CalendarIcon className="w-3 h-3" />
                                 {formatDate(item.timestamp)}
                              </span>
                              <span className="flex items-center gap-1">
-                                <Clock className="w-3 h-3" />
+                                <ClockIcon className="w-3 h-3" />
                                 {item.plan.days.length} Days
                              </span>
                           </div>
@@ -152,7 +152,7 @@ export const HistoryModal: React.FC<HistoryModalProps> = ({
                              onClick={() => onLoad(item)}
                              className="p-2 bg-amber-500 text-black rounded-lg hover:bg-amber-400 transition-colors shadow-lg shadow-amber-900/20 flex items-center gap-2 font-bold text-xs"
                           >
-                             <Play className="w-3 h-3 fill-current" />
+                             <PlayIcon className="w-3 h-3 fill-current" />
                              LOAD
                           </button>
                           <button 
@@ -160,7 +160,7 @@ export const HistoryModal: React.FC<HistoryModalProps> = ({
                              className="p-2 text-neutral-600 hover:text-red-400 hover:bg-red-950/20 rounded-lg transition-colors"
                              title="Delete"
                           >
-                             <Trash2 className="w-4 h-4" />
+                             <TrashIcon className="w-4 h-4" />
                           </button>
                        </div>
                     </div>
