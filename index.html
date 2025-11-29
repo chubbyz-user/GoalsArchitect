@@ -3,7 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GoalArchitect - AI Planner</title>
+    <title>GoalArchitect - AI Goal Planner & Task Scheduler</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="GoalArchitect uses AI to create personalized goal plans. Break down your goals into actionable daily tasks with precision scheduling powered by Google Gemini." />
+    <meta name="keywords" content="goal planner, AI planner, task scheduler, productivity app, goal setting" />
+    <meta name="author" content="GoalArchitect" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph Tags (for social sharing) -->
+    <meta property="og:title" content="GoalArchitect - AI Goal Planner" />
+    <meta property="og:description" content="Create detailed AI-powered plans for any goal in minutes. Get daily actionable tasks." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://goalsarchitect.vercel.app" />
+    <meta property="og:image" content="https://goalsarchitect.vercel.app/og-image.png" />
+    
+    <!-- Twitter Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="GoalArchitect - AI Goal Planner" />
+    <meta name="twitter:description" content="Create AI-powered goal plans with daily tasks" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://goalsarchitect.vercel.app" />
+    
     <!-- We keep the CDN for styling to ensure it looks good immediately, 
          but for a professional offline app, you would eventually install tailwind locally. -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -29,6 +51,27 @@
         background: #d97706; /* Amber 600 (Gold-ish) */
       }
     </style>
+    
+    <!-- Schema.org Structured Data for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "GoalArchitect",
+      "description": "AI-powered goal planner that creates personalized daily task schedules",
+      "url": "https://goalsarchitect.vercel.app",
+      "applicationCategory": "ProductivityApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "GoalArchitect"
+      }
+    }
+    </script>
   <script type="importmap">
 {
   "imports": {
