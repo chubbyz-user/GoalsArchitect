@@ -4,11 +4,12 @@ import { Duration, GeneratedPlan, GeneratedTask } from "../types";
 // Browser builds (Vite) don't provide `process.env`. Use `import.meta.env` for Vite
 // and allow a global fallback if the key is injected some other way.
 const getApiKey = (): string => {
-  // Prefer Vite env variable `VITE_API_KEY`.
-  const key = (import.meta as any)?.env?.VITE_API_KEY || (globalThis as any)?.__GOOGLE_API_KEY__;
+  // Vite exposes env variables via import.meta.env
+  const key = import.meta.env.VITE_API_KEY;
+  
   if (!key) {
     throw new Error(
-      'Missing API key for Gemini: set `VITE_API_KEY` in your env or provide a runtime global `__GOOGLE_API_KEY__`'
+      'Missing API key for Gemini: set `VITE_API_KEY` in your .env.local file'
     );
   }
   return key;
