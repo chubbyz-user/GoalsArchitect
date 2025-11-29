@@ -98,7 +98,7 @@ export const generatePlan = async (goal: string, duration: Duration): Promise<Ge
   `;
 
   try {
-    const response = await ai.models.generateContent({
+    const response = await getAI().models.generateContent({
       model: "gemini-2.5-flash",
       contents: prompt,
       config: {
